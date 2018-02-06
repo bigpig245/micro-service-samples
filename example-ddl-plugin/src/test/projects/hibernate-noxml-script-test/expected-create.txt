@@ -1,0 +1,5 @@
+create sequence hibernate_sequence start 1 increment 1;
+create table key_value_store (key varchar(128) not null, created_at bytea, value varchar(32768), primary key (key));
+create table multi_columns (id int8 not null, column00 boolean not null, column01 float8 not null, column02 int4 not null, column03 int4, column04 varchar(255), column05 varchar(255), column06 varchar(255), column07 varchar(255), column08 varchar(255), column09 varchar(255), column10 varchar(255), primary key (id));
+create index idx_column03 on multi_columns (column03);
+alter table multi_columns add constraint UKodxvlsareror028ji5j5qaomx unique (column04);

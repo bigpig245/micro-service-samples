@@ -1,0 +1,4 @@
+.idea/
+target/
+generated-schema/
+*.iml

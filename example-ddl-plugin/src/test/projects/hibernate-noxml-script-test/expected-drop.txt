@@ -1,0 +1,3 @@
+drop table if exists key_value_store cascade;
+drop table if exists multi_columns cascade;
+drop sequence hibernate_sequence;

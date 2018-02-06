@@ -1,0 +1,19 @@
+spring:
+  main:
+    banner-mode: console
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/dummy?currentSchema=service_user
+    username: dummy_user
+    password: dummy_password
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+server:
+  port: 8092
+  context-path: /user
+
+logging:
+  level:
+    root: INFO

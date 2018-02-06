@@ -1,0 +1,46 @@
+info:
+  app:
+    name: service-user
+    description: User Service
+
+server:
+  context-path: /${CONTEXT_PATH:user}
+
+spring:
+  application:
+    name: service-user
+  main:
+    banner-mode: "off"
+  datasource:
+    platform: postgres
+    driver-class-name: org.postgresql.Driver
+    jmx-enabled: true
+    initialize: false
+    tomcat:
+      initial-size: 0
+      max-active: 10
+      max-idle: 10
+      max-wait: 1000
+      min-idle: 0
+      test-on-borrow: true
+      test-while-idle: true
+      validation-query: select 1
+      validation-query-timeout: 1
+  jpa:
+    database: POSTGRESQL
+    hibernate:
+      ddl-auto: validate
+  batch:
+    job:
+      enabled: false
+
+logging:
+  level:
+    root: WARN
+
+retrofit:
+  logging: false
+
+liquibase:
+  change-log: classpath:/db/changelog/db.changelog-master.xml
+  default-schema: service_user
