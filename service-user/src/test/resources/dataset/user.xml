@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <user id="1" login="bigpig" first_name="trang" last_name="coi" display_name="heo coi"
+          email="ntrang2459@yahoo.com" password="1231234" active="true" version="1"
+          created_date="2017-05-05 09:00:00" last_modified_date="2017-05-05 09:00:00"/>
+    <user id="2" login="trang" first_name="trang" last_name="coi" display_name="heo coi"
+          email="ntrang2459@gmail.com" password="1231234" active="false" version="1"
+          created_date="2017-05-05 09:00:00" last_modified_date="2017-05-05 09:00:00"/>
+
+</dataset>
+

@@ -4,15 +4,19 @@ import com.example.domain.User;
 import com.example.dto.CreatedUserDto;
 import com.example.dto.UserDto;
 import com.example.dto.UserLoginDto;
-import lombok.RequiredArgsConstructor;
+import com.example.dto.enumeration.SUMessage;
+import com.example.exception.CustomRuntimeException;
 import com.example.mapper.UserMapper;
+import com.example.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.example.repository.UserRepository;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
+
+import static java.util.Optional.ofNullable;
 
 @Service
 @RequiredArgsConstructor
@@ -25,7 +29,10 @@ public class UserService {
     private static final int EXPIRED_DAYS = 2;
 
     public UserDto getUserInfo(UserLoginDto loginDto) {
-        return userMapper.userToUserDto(userRepository.findByLogin(loginDto.getLogin()));
+        return ofNullable(userRepository.findByLogin(loginDto.getLogin()))
+                .filter(User::isActive)
+                .map(userMapper::userToUserDto)
+                .orElseThrow(() -> new CustomRuntimeException(SUMessage.INACTIVE_USER));
     }
 
     @Transactional

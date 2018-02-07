@@ -1,0 +1,34 @@
+info:
+  app:
+    name: service-user
+    description: User Service
+
+spring:
+  application:
+    name: service-user
+  main:
+    banner-mode: "off"
+  profiles:
+    active: test
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  datasource:
+    initialize: true
+    tomcat:
+      max-active: 2
+  jackson:
+    serialization: true
+    date-format: yyyy-MM-dd HH:mm:ss
+  batch:
+    job:
+      enabled: false
+
+liquibase:
+  change-log: classpath:/db/changelog/db.changelog-master.xml
+  default-schema: service_user
+
+logging:
+  level:
+    root: ERROR
+
