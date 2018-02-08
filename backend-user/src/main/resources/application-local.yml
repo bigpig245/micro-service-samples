@@ -1,0 +1,40 @@
+spring:
+  main:
+    banner-mode: console
+  session:
+    store-type: HASH_MAP
+  http:
+    multipart:
+      max-file-size: 10MB
+
+server:
+  port: 9001
+  url:
+      vn: localhost
+      en: localhost1
+
+logging:
+  level:
+    root: INFO
+    retrofit: TRACE
+
+service:
+  url:
+    user: http://localhost:9011/user/
+  timeout:
+    internal-services: 60
+
+cloud.aws:
+  credentials:
+    accessKey: accessKey
+    secretKey: secretKey
+  region:
+    auto: false
+    static: eu-central-1
+
+s3:
+  publicBucket:
+    mock: true
+    bucket: public-bucket
+  media:
+    bucket: media-bucket

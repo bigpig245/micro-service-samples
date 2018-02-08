@@ -1,0 +1,27 @@
+info:
+  app:
+    name: backend-user
+    description: User Backend
+
+server:
+  context-path: /${CONTEXT_PATH:user}
+
+spring:
+  application:
+    name: backend-user
+  main:
+    banner-mode: "off"
+  jackson:
+    serialization: true
+    date-format: yyyy-MM-dd HH:mm:ss
+  session:
+    store-type: redis
+
+logging:
+  level:
+    root: WARN
+
+cloud:
+  aws:
+    stack:
+      auto: false

@@ -42,4 +42,18 @@ public class UserService {
         user.setActivationExpiredDate(LocalDateTime.now().plusDays(EXPIRED_DAYS));
         userRepository.save(user);
     }
+
+    @Transactional
+    public void activate(String activationToken) {
+        User user = ofNullable(userRepository.findByActivationToken(activationToken))
+                .orElseThrow(() -> new CustomRuntimeException(SUMessage.RESOURCE_NOT_FOUND));
+
+        if (user.getActivationExpiredDate().isBefore(LocalDateTime.now())) {
+            throw new CustomRuntimeException(SUMessage.EXPIRED_TOKEN);
+        }
+        user.setActive(true);
+        user.setActivationToken(null);
+        user.setActivationExpiredDate(null);
+        userRepository.save(user);
+    }
 }
