@@ -1,7 +1,6 @@
 package com.example.controller;
 
 import com.example.TestHelper;
-import com.example.config.CountryFilter;
 import com.example.dto.CreatedUserDto;
 import com.example.service.UserService;
 import com.example.utils.Constants;
@@ -19,29 +18,23 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 /**
  * Test controller with secure
  */
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(UserController.class)
+@WebMvcTest(value = UserController.class, secure = false)
 public class UserControllerLessSecureTest {
 
-    private MockMvc mockMvc;
     @Autowired
-    private UserController userController;
-
+    private MockMvc mockMvc;
 
     @MockBean
     private UserService userService;
 
     @Before
     public void setup() {
-        mockMvc = standaloneSetup(userController)
-                .addFilter(new CountryFilter())
-                .build();
     }
 
     @Test
