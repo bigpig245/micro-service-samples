@@ -9,6 +9,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
+    show-sql: true
 
 server:
   port: 9011
@@ -17,3 +18,4 @@ server:
 logging:
   level:
     root: INFO
+    org.hibernate.SQL: DEBUG
