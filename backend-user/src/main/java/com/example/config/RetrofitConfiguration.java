@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
+import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 @Configuration
@@ -20,6 +21,8 @@ import java.util.function.Supplier;
 public class RetrofitConfiguration {
 
     private final ServiceUrlConfig serviceUrlConfig;
+    private final ServiceTimeOutConfig serviceTimeOutConfig;
+    private final Interceptor countryInterceptor = new CountryInterceptor();
     private final Interceptor loggingInterceptor
             = new RetrofitLoggingInterceptor(HttpLoggingInterceptor.Level.BODY, log::trace);
 
@@ -34,6 +37,8 @@ public class RetrofitConfiguration {
     public OkHttpClient externalHttpClient() {
         return new OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)
+                .addInterceptor(countryInterceptor)
+                .readTimeout(serviceTimeOutConfig.getInternalServices(), TimeUnit.SECONDS)
                 .build();
     }
 
