@@ -13,7 +13,7 @@ import javax.validation.Valid;
 public interface UserRest {
     @POST("v1/users")
     Call<Void> addUser(@Body @Valid CreatedUserDto createdUserDto);
-    @POST("/v1/signIn")
+    @POST("v1/signIn")
     Call<UserDto> signIn(@Body @Valid SignInDto signInDto);
     @POST("v1/users/activate")
     Call<Void> activate(@Query("activateToken") String activateToken);

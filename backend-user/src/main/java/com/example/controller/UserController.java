@@ -29,4 +29,5 @@ public class UserController {
         userService.activate(activationToken);
         return ResponseEntity.noContent().build();
     }
+
 }
